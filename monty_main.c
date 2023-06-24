@@ -6,10 +6,9 @@
 bus_t bus = {NULL, NULL, NULL, 0};
 
 /**
-* main - function for monty code interpreter
-* @argc: argument count
-* @argv: argument value
-*
+* main - Function for monty code interpreter
+* @argc: Argument count
+* @argv: Argument value
 * Return: 0 on success
 */
 int main(int argc, char *argv[])
@@ -17,7 +16,7 @@ int main(int argc, char *argv[])
 	char *content;
 	FILE *file;
 	size_t size = 0;
-	ssize_t nlines = 1;
+	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 	unsigned int counter = 0;
 
@@ -33,13 +32,13 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (nlines > 0)
+	while (read_line > 0)
 	{
 		content = NULL;
-		nlines = getline(&content, &size, file);
+		read_line = getline(&content, &size, file);
 		bus.content = content;
 		counter++;
-		if (nlines > 0)
+		if (read_line > 0)
 		{
 			execute(content, &stack, counter, file);
 		}
